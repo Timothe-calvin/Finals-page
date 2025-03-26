@@ -1,0 +1,56 @@
+/* src/App.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #282c34;
+    padding: 1rem;
+    color: white;
+}
+
+.navbar-links {
+    list-style-type: none;
+    padding: 0;
+}
+.navbar-links li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.product {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 200px;
+}
+
+.product-details {
+    padding: 20px;
+    text-align: center;
+}
+
+.checkout {
+    padding: 20px;
+}
+
+.checkout ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.checkout li {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
