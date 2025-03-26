@@ -7,18 +7,20 @@ body {
 }
 
 .navbar {
-    background-color: #282c34;
-    padding: 1rem;
-    color: white;
+    background: #282c34;
+    display: flex;
+    padding: 10px;
 }
 
-.navbar-links {
-    list-style-type: none;
-    padding: 0;
+.navbar-logo {
+    color: white;
+    margin-right: auto;
+    text-decoration: none;
 }
-.navbar-links li {
-    display: inline;
-    margin-right: 20px;
+
+.search-form input {
+    padding: 5px;
+    margin-right: 5px;
 }
 
 .product-list {
@@ -29,28 +31,14 @@ body {
 }
 
 .product {
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
+    border-radius: 8px;
     padding: 10px;
-    border-radius: 5px;
     text-align: center;
     width: 200px;
 }
 
-.product-details {
-    padding: 20px;
-    text-align: center;
-}
-
-.checkout {
-    padding: 20px;
-}
-
-.checkout ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.checkout li {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
+.product img {
+    max-width: 100%;
+    height: auto;
 }
