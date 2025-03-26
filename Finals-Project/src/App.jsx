@@ -11,7 +11,6 @@ const cardStyle = {
   maxWidth: '300px',
   backgroundColor:'#fff',
   minHeight:'300px',
- 
 };
 
 
@@ -33,7 +32,7 @@ useEffect(() => {
   <img src={item.image} alt="" width={300} />
   <div key={item.id} >{item.title} </div>
   <div> {item.price}</div>
-  <p>{item.description}</p>
+  <p> {item.description}</p>
 </div>
   ))}
 </div>
