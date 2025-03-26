@@ -2,12 +2,12 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ProductList from '../Components/ProductList';
-import ProductDetail from '../Components/ProductDetails';
-import Checkout from '../Components/Checkout';
-import Navbar from '../Components/Navbar';
+import ProductList from './Components/ProductList';
+import ProductDetail from './Components/ProductDetails';
+import Checkout from './Components/Checkout';
+import Navbar from './Components/Navbar';
 import { CartProvider } from './context/CartContext';
-import './App.css'; // Add any necessary styles here
+import './App.css'; 
 
 const App = () => {
     return (
