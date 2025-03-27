@@ -3,9 +3,18 @@
 import React from "react";
 import { useProductContext } from "../context/ProductContext";
 import { Link } from "react-router-dom";
-
+import './Cart.css'
 const Cart = () => {
-    const { cart } = useProductContext();
+    const { cart, setCart } = useProductContext(); // Access the cart from context
+
+    const handleRemoveItem = (itemToRemove) => {
+        const updatedCart = cart.filter(item => item.id !== itemToRemove.id); // Remove specific item
+        setCart(updatedCart); // Update the cart state
+    };
+
+    const handleClearCart = () => {
+        setCart([]); // Clear the cart
+    };
 
     return (
         <div>
@@ -13,14 +22,18 @@ const Cart = () => {
             {cart.length === 0 ? (
                 <p>Your cart is empty.</p>
             ) : (
-                <ul>
-                    {cart.map((item, index) => (
-                        <li key={index}>
-                            <h3>{item.title}</h3>
-                            <p>Price: ${item.price}</p>
-                        </li>
-                    ))}
-                </ul>
+                <>
+                    <ul>
+                        {cart.map((item) => (
+                            <li key={item.id}>
+                                <h3>{item.title}</h3>
+                                <p>Price: ${item.price}</p>
+                                <button onClick={() => handleRemoveItem(item)}>Remove</button> {/* Remove item button */}
+                            </li>
+                        ))}
+                    </ul>
+                    <button onClick={handleClearCart}>Clear Cart</button> {/* Clear cart button */}
+                </>
             )}
             <Link to="/">Continue Shopping</Link>
         </div>

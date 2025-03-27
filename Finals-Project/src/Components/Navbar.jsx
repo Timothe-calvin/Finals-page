@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import './Navbar.css';
 
-const Navbar = ({ onSearch, onSort }) => {
+const Navbar = ({ onSearch, onSort, onReset }) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [sortOrder, setSortOrder] = useState("lowToHigh");
 
@@ -14,6 +14,11 @@ const Navbar = ({ onSearch, onSort }) => {
         setSearchTerm('');
     };
 
+    const handleReset = () => {
+        onReset(); // Call the reset function to show all products
+        setSearchTerm(''); // Clear the search input
+    };
+
     const handleSortChange = (e) => {
         setSortOrder(e.target.value);
         onSort(e.target.value);
@@ -21,7 +26,7 @@ const Navbar = ({ onSearch, onSort }) => {
 
     return (
         <nav className="navbar">
-            <Link to="/" className="navbar-logo">Product Store</Link>
+            <Link to="/" className="navbar-logo" onClick={handleReset}>Product Store</Link>
             <form onSubmit={handleSearch} className="search-form">
                 <input
                     type="text"
