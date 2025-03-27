@@ -1,16 +1,16 @@
 // src/components/ProductList.jsx
 
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useProductContext } from "../context/ProductContext";
-import axios from "axios";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import './ProductList.css';
 
 const ProductList = ({ filteredProducts }) => {
     const { cart, setCart } = useProductContext();
 
     const handleAddToCart = (product) => {
-        setCart([...cart, product]);
+        setCart([...cart, product]); // Add product to cart
     };
 
     return (
@@ -23,7 +23,9 @@ const ProductList = ({ filteredProducts }) => {
                         <p>Price: ${product.price}</p>
                         <p>Rating: {product.rating.rate} ({product.rating.count})</p>
                     </Link>
-                    <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+                    <button onClick={() => handleAddToCart(product)}>
+                        <AddShoppingCartIcon /> Add To Cart:{/* Add icon for adding to cart */}
+                    </button>
                 </div>
             ))}
         </div>

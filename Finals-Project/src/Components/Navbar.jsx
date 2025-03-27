@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import SearchIcon from '@mui/icons-material/Search';
 import './Navbar.css';
 
 const Navbar = ({ onSearch, onSort, onReset }) => {
@@ -11,7 +13,7 @@ const Navbar = ({ onSearch, onSort, onReset }) => {
     const handleSearch = (e) => {
         e.preventDefault();
         onSearch(searchTerm);
-        setSearchTerm('');
+        setSearchTerm(''); // Clear the input field
     };
 
     const handleReset = () => {
@@ -34,13 +36,17 @@ const Navbar = ({ onSearch, onSort, onReset }) => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Search products..."
                 />
-                <button type="submit">Search</button>
+                <button type="submit">
+                    <SearchIcon /> {/* Add search icon */}
+                </button>
             </form>
             <select onChange={handleSortChange} value={sortOrder}>
                 <option value="lowToHigh">Price: Low to High</option>
                 <option value="highToLow">Price: High to Low</option>
             </select>
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart">
+                <ShoppingCartIcon /> {/* Add cart icon */}
+            </Link>
         </nav>
     );
 };

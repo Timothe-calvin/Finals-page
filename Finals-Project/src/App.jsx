@@ -3,13 +3,12 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ProductProvider, useProductContext } from "./context/ProductContext";
-import Navbar from "./Components/Navbar"
+import Navbar from "./Components/Navbar";
 import ProductList from "./Components/ProductList";
 import ProductDetail from "./Components/ProductDetails";
 import Cart from "./Components/Cart";
 import axios from "axios";
 import './App.css';
-
 
 const App = () => {
     const { setProducts, products } = useProductContext();
@@ -42,7 +41,7 @@ const App = () => {
         const sorted = [...filteredProducts].sort((a, b) => 
             order === 'lowToHigh' ? a.price - b.price : b.price - a.price
         );
-        setFilteredProducts(sorted);
+        setFilteredProducts(sorted); // Apply sorting based on the selected order
     };
 
     const handleReset = () => {

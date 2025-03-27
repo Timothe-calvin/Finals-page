@@ -3,17 +3,19 @@
 import React from "react";
 import { useProductContext } from "../context/ProductContext";
 import { Link } from "react-router-dom";
-import './Cart.css'
+import DeleteIcon from '@mui/icons-material/Delete';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
+
 const Cart = () => {
-    const { cart, setCart } = useProductContext(); // Access the cart from context
+    const { cart, setCart } = useProductContext();
 
     const handleRemoveItem = (itemToRemove) => {
-        const updatedCart = cart.filter(item => item.id !== itemToRemove.id); // Remove specific item
-        setCart(updatedCart); // Update the cart state
+        const updatedCart = cart.filter(item => item.id !== itemToRemove.id);
+        setCart(updatedCart);
     };
 
     const handleClearCart = () => {
-        setCart([]); // Clear the cart
+        setCart([]);
     };
 
     return (
@@ -28,11 +30,16 @@ const Cart = () => {
                             <li key={item.id}>
                                 <h3>{item.title}</h3>
                                 <p>Price: ${item.price}</p>
-                                <button onClick={() => handleRemoveItem(item)}>Remove</button> {/* Remove item button */}
+                                <button onClick={() => handleRemoveItem(item)}>
+                                    <DeleteIcon /> Delete Item {/* Icon for removing item */}
+                                </button>
                             </li>
                         ))}
                     </ul>
-                    <button onClick={handleClearCart}>Clear Cart</button> {/* Clear cart button */}
+                    <button onClick={handleClearCart}>
+                        <ClearAllIcon /> {/* Icon for clearing the cart */}
+                        Clear Cart
+                    </button>
                 </>
             )}
             <Link to="/">Continue Shopping</Link>
