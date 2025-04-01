@@ -1,15 +1,15 @@
 /* src/components/Cart.css (if you have one) */
 
 button {
-    background-color: #dc3545; /* Bootstrap danger color for remove */
-    color: white; /* White text */
-    border: none; /* No border */
-    border-radius: 4px; /* Rounded corners */
-    padding: 5px 10px; /* Padding for button */
-    cursor: pointer; /* Pointer cursor on hover */
-    margin-left: 10px; /* Spacing between buttons */
+  background-color: #dc3545; /* Bootstrap danger color for remove */
+  color: white; /* White text */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 5px 10px; /* Padding for button */
+  cursor: pointer; /* Pointer cursor on hover */
+  margin-left: 10px; /* Spacing between buttons */
 }
 
 button:hover {
-    background-color: #c82333; /* Darker shade on hover */
+  background-color: #c82333; /* Darker shade on hover */
 }

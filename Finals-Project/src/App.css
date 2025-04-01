@@ -1,23 +1,23 @@
 /* src/App.css or appropriate CSS file */
 
 button {
-    display: flex; /* Layout the icon and text next to each other */
-    align-items: center; /* Center align items */
-    background-color: #007bff; /* Bootstrap primary color */
-    color: white; /* White text */
-    border: none; /* No border */
-    border-radius: 4px; /* Rounded corners */
-    padding: 8px 10px; /* Padding for button */
-    cursor: pointer; /* Pointer cursor */
-    transition: background-color 0.2s; /* Transition effect */
-    margin-top: 10px; /* Top margin for spacing */
-    margin-left: 5px; /* Side margin if optional */
+  display: flex; /* Layout the icon and text next to each other */
+  align-items: center; /* Center align items */
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white; /* White text */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 8px 10px; /* Padding for button */
+  cursor: pointer; /* Pointer cursor */
+  transition: background-color 0.2s; /* Transition effect */
+  margin-top: 10px; /* Top margin for spacing */
+  margin-left: 5px; /* Side margin if optional */
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+  background-color: #0056b3; /* Darker shade on hover */
 }
 
 button svg {
-    margin-right: 5px; /* Space between icon and text */
+  margin-right: 5px; /* Space between icon and text */
 }
