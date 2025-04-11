@@ -1,5 +1,3 @@
-// src/App.jsx
-
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ProductProvider, useProductContext } from "./context/ProductContext";
@@ -13,62 +11,43 @@ import "./App.css";
 const App = () => {
   const { setProducts, products } = useProductContext();
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [sortOption, setSortOption] = useState("lowToHigh");
 
+  // Fetch the products from the API
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await axios.get("https://fakestoreapi.com/products");
-      setProducts(response.data);
-      setFilteredProducts(response.data); // Display all products initially
+      try {
+        const response = await axios.get("https://fakestoreapi.com/products");
+        setProducts(response.data); // Set the products into context
+        setFilteredProducts(response.data); // Initially show all products
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     };
     fetchProducts();
-  }, [setProducts]);
-
-  const handleSearch = (searchTerm) => {
-    if (searchTerm) {
-      const results = products.filter(
-        (product) =>
-          product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          product.description.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredProducts(results);
-    } else {
-      setFilteredProducts(products); // Reset to full list if no search term
-    }
-  };
-
-  const handleSort = (order) => {
-    setSortOption(order);
-    const sorted = [...filteredProducts].sort((a, b) =>
-      order === "lowToHigh" ? a.price - b.price : b.price - a.price
-    );
-    setFilteredProducts(sorted); // Apply sorting based on the selected order
-  };
-
-  const handleReset = () => {
-    setFilteredProducts(products); // Reset to full list when called
-  };
+  }, [setProducts]); // Only run on initial load
 
   return (
     <Router>
-      <Navbar
-        onSearch={handleSearch}
-        onSort={handleSort}
-        onReset={handleReset}
-      />
-      <Routes>
-        <Route
-          path="/"
-          element={<ProductList filteredProducts={filteredProducts} />}
-        />
-        <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
+      <Navbar />
+      <div className="main-content">
+        <Routes>
+          {/* Home Page Route - Product List page */}
+          <Route
+            path="/"
+            element={<ProductList filteredProducts={filteredProducts} />}
+          />
+
+          {/* Product Details Page Route */}
+          <Route path="/product-detail/:productId" element={<ProductDetail />} />
+
+          {/* Cart Page Route */}
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+      </div>
     </Router>
   );
 };
 
-// Wrap App component with ProductProvider
 export default function AppWrapper() {
   return (
     <ProductProvider>

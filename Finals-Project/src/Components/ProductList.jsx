@@ -1,36 +1,40 @@
-// src/components/ProductList.jsx
-
+// src/Components/ProductList/ProductList.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import { useProductContext } from "../context/ProductContext";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import "./ProductList.css";
+import './ProductList.css';
 
 const ProductList = ({ filteredProducts }) => {
-  const { cart, setCart } = useProductContext();
+  const { addToCart } = useProductContext();
 
   const handleAddToCart = (product) => {
-    setCart([...cart, product]); // Add product to cart
+    addToCart(product);
   };
 
   return (
     <div className="product-list">
-      {filteredProducts.map((product) => (
-        <div key={product.id} className="product">
-          <Link to={`/product/${product.id}`}>
-            <img src={product.image} alt={product.title} />
-            <h3>{product.title}</h3>
-            <p>Price: ${product.price}</p>
-            <p>
-              Rating: {product.rating.rate} ({product.rating.count})
-            </p>
-          </Link>
-          <button onClick={() => handleAddToCart(product)}>
-            <AddShoppingCartIcon /> Add To Cart:
-            {/* Add icon for adding to cart */}
-          </button>
-        </div>
-      ))}
+      <h1>Product List</h1>
+      <div className="product-grid">
+        {filteredProducts.map((product) => (
+          <div className="product-card" key={product.id}>
+            <div className="product-card-image">
+              <img src={product.image} alt={product.title} />
+            </div>
+            <div className="product-card-details">
+              <h3>{product.title}</h3>
+              <p>{product.description.substring(0, 80)}...</p>
+              <p>Price: ${product.price}</p>
+              <p>Rating: {product.rating.rate} / 5</p>
+              <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
+                Add to Cart
+              </button>
+              <Link to={`/product-detail/${product.id}`} className="view-details">
+                View Details
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

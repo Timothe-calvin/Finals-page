@@ -1,48 +1,59 @@
-// src/components/Cart.jsx
-
+// src/Components/Cart/Cart.jsx
 import React from "react";
 import { useProductContext } from "../context/ProductContext";
-import { Link } from "react-router-dom";
-import DeleteIcon from "@mui/icons-material/Delete";
-import ClearAllIcon from "@mui/icons-material/ClearAll";
+import './Cart.css';
 
 const Cart = () => {
-  const { cart, setCart } = useProductContext();
+  const { cart, removeFromCart, clearCart, updateQuantity } = useProductContext();
 
-  const handleRemoveItem = (itemToRemove) => {
-    const updatedCart = cart.filter((item) => item.id !== itemToRemove.id);
-    setCart(updatedCart);
-  };
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
-  const handleClearCart = () => {
-    setCart([]);
+  const handleQuantityChange = (productId, operation) => {
+    updateQuantity(productId, operation);
   };
 
   return (
-    <div>
-      <h1>Cart</h1>
+    <div className="cart-container">
+      <h1>Your Cart</h1>
       {cart.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <p>Your cart is empty!</p>
       ) : (
         <>
-          <ul>
+          <div className="cart-items">
             {cart.map((item) => (
-              <li key={item.id}>
-                <h3>{item.title}</h3>
-                <p>Price: ${item.price}</p>
-                <button onClick={() => handleRemoveItem(item)}>
-                  <DeleteIcon /> Delete Item {/* Icon for removing item */}
-                </button>
-              </li>
+              <div key={item.id} className="cart-item">
+                <div className="cart-item-details">
+                  <img src={item.image} alt={item.title} className="cart-item-image" />
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>Price: ${item.price}</p>
+                    <div className="quantity-controls">
+                      <button onClick={() => handleQuantityChange(item.id, "decrease")}>-</button>
+                      <span>Quantity: {item.quantity}</span>
+                      <button onClick={() => handleQuantityChange(item.id, "increase")}>+</button>
+                    </div>
+                    <button
+                      className="remove-from-cart"
+                      onClick={() => removeFromCart(item.id)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
             ))}
-          </ul>
-          <button onClick={handleClearCart}>
-            <ClearAllIcon /> {/* Icon for clearing the cart */}
-            Clear Cart
-          </button>
+          </div>
+          <div className="cart-summary">
+            <h3>Total Price: ${totalPrice.toFixed(2)}</h3>
+            <button className="clear-cart" onClick={clearCart}>
+              Clear Cart
+            </button>
+          </div>
         </>
       )}
-      <Link to="/">Continue Shopping</Link>
     </div>
   );
 };

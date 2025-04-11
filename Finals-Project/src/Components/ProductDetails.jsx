@@ -1,41 +1,55 @@
-// src/components/ProductDetail.jsx
-
+// src/Components/ProductDetail/ProductDetail.jsx
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useProductContext } from "../context/ProductContext";
-import "./ProductDetails.css";
+import './ProductDetails.css';
+
 const ProductDetail = () => {
-  const { id } = useParams(); // Get the product ID from the URL parameters
-  const { products, cart, setCart } = useProductContext(); // Access products and cart from context
-  const [product, setProduct] = useState(null); // State to store the selected product
+  const { productId } = useParams(); // Get the product ID from the URL
+  const { products, addToCart } = useProductContext();
+  const [product, setProduct] = useState(null);
+  const navigate = useNavigate(); // For navigating back to the home page
 
+  // Find the selected product by its ID
   useEffect(() => {
-    const foundProduct = products.find((prod) => prod.id === parseInt(id));
-    setProduct(foundProduct); // Set the product details
-  }, [id, products]);
-
-  const handleAddToCart = () => {
-    if (product) {
-      setCart([...cart, product]); // Add the product to the cart
-      alert(`${product.title} has been added to your cart!`); // Alert confirmation
+    const selectedProduct = products.find((prod) => prod.id === parseInt(productId));
+    if (selectedProduct) {
+      setProduct(selectedProduct);
     }
+  }, [productId, products]);
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+  };
+
+  const handleBackToHome = () => {
+    navigate("/"); // Navigate back to the home page (Product List)
   };
 
   if (!product) {
-    return <p>Loading...</p>; // Show loading message until product is found
+    return <div>Loading...</div>; // Loading state if the product is not yet available
   }
 
   return (
-    <div>
-      <h1>{product.title}</h1>
-      <img src={product.image} alt={product.title} />
-      <p>Price: ${product.price}</p>
-      <p>
-        Rating: {product.rating.rate} ({product.rating.count} reviews)
-      </p>
-      <p>{product.description}</p>
-      <button onClick={handleAddToCart}>Add to Cart</button>
-      <Link to="/">Back to Products</Link>
+    <div className="product-detail">
+      {/* Back to Home Button */}
+      <button className="back-button" onClick={handleBackToHome}>Back to Home</button>
+
+      {/* Product Detail Content */}
+      <div className="product-detail-content">
+        <div className="product-detail-image">
+          <img src={product.image} alt={product.title} />
+        </div>
+        <div className="product-detail-info">
+          <h2>{product.title}</h2>
+          <p>{product.description}</p>
+          <p>Price: ${product.price}</p>
+          <p>Rating: {product.rating.rate} / 5</p>
+          <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
+            Add to Cart
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
