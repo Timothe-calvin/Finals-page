@@ -3,19 +3,22 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 }
 
-html, body {
+html,
+body {
   height: 100%; /* Ensures the body and html take up full height */
-  width: 100%;  /* Ensures full width */
+  width: 100%; /* Ensures full width */
   background-color: #f5f5f5;
   color: #333;
   font-size: 16px;
   line-height: 1.6;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-weight: 600;
 }
 
@@ -31,7 +34,7 @@ button {
 
 /* Ensuring the navbar stays fixed at the top and stretches across the full screen */
 .navbar {
-  position: fixed;  /* Ensures it stays at the top */
+  position: fixed; /* Ensures it stays at the top */
   top: 0;
   left: 0;
   width: 100%; /* Full width */

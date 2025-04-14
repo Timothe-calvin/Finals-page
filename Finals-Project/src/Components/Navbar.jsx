@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom"; // Added useNavigate for navigation
 import { useProductContext } from "../context/ProductContext";
-import './Navbar.css';
+import "./Navbar.css";
 
 const Navbar = ({ onSearch, searchTerm, setSearchTerm }) => {
   const { cart } = useProductContext(); // Get the cart from context

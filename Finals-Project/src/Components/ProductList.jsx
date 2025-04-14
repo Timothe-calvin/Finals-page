@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useProductContext } from "../context/ProductContext";
-import './ProductList.css';
+import "./ProductList.css";
 
 const ProductList = ({ filteredProducts }) => {
   const { addToCart } = useProductContext();
   const [sortedProducts, setSortedProducts] = useState(filteredProducts);
-  const [sortOption, setSortOption] = useState('none'); // Default to 'none' meaning no sorting
+  const [sortOption, setSortOption] = useState("none"); // Default to 'none' meaning no sorting
 
   // Function to handle adding items to the cart
   const handleAddToCart = (product) => {
@@ -20,11 +20,11 @@ const ProductList = ({ filteredProducts }) => {
     setSortOption(order);
 
     let sorted = [...filteredProducts];
-    
+
     // Only sort if there is a valid option selected
-    if (order === 'lowToHigh') {
+    if (order === "lowToHigh") {
       sorted = sorted.sort((a, b) => a.price - b.price); // Sort by price from low to high
-    } else if (order === 'highToLow') {
+    } else if (order === "highToLow") {
       sorted = sorted.sort((a, b) => b.price - a.price); // Sort by price from high to low
     }
 
@@ -43,7 +43,12 @@ const ProductList = ({ filteredProducts }) => {
       {/* Sort Dropdown */}
       <div className="sort-container">
         <label htmlFor="sort">Sort by Price:</label>
-        <select id="sort" value={sortOption} onChange={handleSort} className="sort-dropdown">
+        <select
+          id="sort"
+          value={sortOption}
+          onChange={handleSort}
+          className="sort-dropdown"
+        >
           <option value="none">Default</option>
           <option value="lowToHigh">Price: Low to High</option>
           <option value="highToLow">Price: High to Low</option>
@@ -63,10 +68,16 @@ const ProductList = ({ filteredProducts }) => {
                 <p>{product.description.substring(0, 80)}...</p>
                 <p>Price: ${product.price}</p>
                 <p>Rating: {product.rating.rate} / 5</p>
-                <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
+                <button
+                  className="add-to-cart"
+                  onClick={() => handleAddToCart(product)}
+                >
                   Add to Cart
                 </button>
-                <Link to={`/product-detail/${product.id}`} className="view-details">
+                <Link
+                  to={`/product-detail/${product.id}`}
+                  className="view-details"
+                >
                   View Details
                 </Link>
               </div>

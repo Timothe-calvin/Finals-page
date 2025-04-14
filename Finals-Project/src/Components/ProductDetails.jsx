@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useProductContext } from "../context/ProductContext";
-import './ProductDetails.css';
+import "./ProductDetails.css";
 
 const ProductDetail = () => {
   const { productId } = useParams(); // Get the product ID from the URL
@@ -12,7 +12,9 @@ const ProductDetail = () => {
 
   // Find the selected product by its ID
   useEffect(() => {
-    const selectedProduct = products.find((prod) => prod.id === parseInt(productId));
+    const selectedProduct = products.find(
+      (prod) => prod.id === parseInt(productId)
+    );
     if (selectedProduct) {
       setProduct(selectedProduct);
     }
@@ -33,7 +35,9 @@ const ProductDetail = () => {
   return (
     <div className="product-detail">
       {/* Back to Home Button */}
-      <button className="back-button" onClick={handleBackToHome}>Back to Home</button>
+      <button className="back-button" onClick={handleBackToHome}>
+        Back to Home
+      </button>
 
       {/* Product Detail Content */}
       <div className="product-detail-content">
@@ -45,7 +49,10 @@ const ProductDetail = () => {
           <p>{product.description}</p>
           <p>Price: ${product.price}</p>
           <p>Rating: {product.rating.rate} / 5</p>
-          <button className="add-to-cart" onClick={() => handleAddToCart(product)}>
+          <button
+            className="add-to-cart"
+            onClick={() => handleAddToCart(product)}
+          >
             Add to Cart
           </button>
         </div>

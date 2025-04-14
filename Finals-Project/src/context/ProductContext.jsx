@@ -1,12 +1,12 @@
 // src/context/ProductContext.jsx
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from "react";
 
 // Create ProductContext to share data across components
 const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);  // Holds the list of products
-  const [cart, setCart] = useState([]);  // Holds the products added to the cart
+  const [products, setProducts] = useState([]); // Holds the list of products
+  const [cart, setCart] = useState([]); // Holds the products added to the cart
 
   // Add product to the cart
   const addToCart = (product) => {
@@ -17,7 +17,7 @@ export const ProductProvider = ({ children }) => {
       setCart(
         cart.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }  // Increase quantity by 1
+            ? { ...item, quantity: item.quantity + 1 } // Increase quantity by 1
             : item
         )
       );
@@ -42,7 +42,9 @@ export const ProductProvider = ({ children }) => {
           ? {
               ...item,
               quantity:
-                operation === "increase" ? item.quantity + 1 : item.quantity - 1,
+                operation === "increase"
+                  ? item.quantity + 1
+                  : item.quantity - 1,
             }
           : item
       )
